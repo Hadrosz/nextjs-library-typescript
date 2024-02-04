@@ -18,9 +18,10 @@ import {
 import { SearchIcon } from "@/app/assets/NavBarLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
-export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+export default function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const path = usePathname();
 

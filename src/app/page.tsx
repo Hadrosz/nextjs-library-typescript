@@ -1,21 +1,11 @@
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 import CardBooks from "@/app/components/CardBooks";
 import { type Database } from "@/app/types/database";
+import { createClient } from "@supabase/supabase-js";
 
 export default async function Home() {
-  const cookieStore = cookies();
-
-  const supabase = createServerClient<Database>(
+  const supabase = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
   const { data: books } = await supabase
     .from("Books")
@@ -27,6 +17,9 @@ export default async function Home() {
     `
     )
     .order("dateWritten", { ascending: true });
+
+  const data = await supabase.auth.getSession();
+  console.log(data);
 
   return (
     <section>
