@@ -4,6 +4,8 @@ import "./globals.css";
 import { Providers } from "./provider";
 import NavbarComponent from "./components/Navbar";
 import { createClient } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+import { createClient as cClient } from "@/app/utils/supabase/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +19,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const supabase = cClient(cookieStore);
+  const session = await supabase.auth.getUser();
+
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
         <Providers>
-          <NavbarComponent />
+          <NavbarComponent session={session} />
           <main className="mx-auto max-w-screen-2xl px-6 py-8 ">
             {children}
           </main>

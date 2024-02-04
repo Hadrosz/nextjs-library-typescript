@@ -14,6 +14,7 @@ import { Inputs } from "@/app/types/type";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
+import { logIn } from "@/app/actions/LogInAction";
 
 export default function EmailTemplate() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,22 +30,13 @@ export default function EmailTemplate() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (user) => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: user.email,
-      password: user.password,
-    });
-    const session = await supabase.auth.getSession();
-    console.log(session);
-    ({ session });
-    if (!error) {
-      setErrorMessage("");
-      router.push("/");
+    const error = await logIn(user);
+    if (error) {
+      router.refresh();
     } else {
-      setErrorMessage(error.message);
+      router.refresh();
+
+      router.push("/");
     }
   };
 

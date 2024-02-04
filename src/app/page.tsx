@@ -1,13 +1,16 @@
 import CardBooks from "@/app/components/CardBooks";
 import { type Database } from "@/app/types/database";
+import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+import { createClient as cClient } from "@/app/utils/supabase/server";
 
 export default async function Home() {
-  const supabase = createClient<Database>(
+  const supabaseDB = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  const { data: books } = await supabase
+  const { data: books } = await supabaseDB
     .from("Books")
     .select(
       `*,
@@ -17,9 +20,6 @@ export default async function Home() {
     `
     )
     .order("dateWritten", { ascending: true });
-
-  const data = await supabase.auth.getSession();
-  console.log(data);
 
   return (
     <section>

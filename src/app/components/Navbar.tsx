@@ -18,12 +18,20 @@ import {
 import { SearchIcon } from "@/app/assets/NavBarLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
+import { Data } from "../types/type";
+import { createClient } from "@/app/utils/supabase/client";
 
-export default function NavBar() {
+export default function NavBar({ session }: { session: Data }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(session.data.user);
 
+  const supabase = createClient();
   const path = usePathname();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
 
   const menuItems = [
     "Profile",
@@ -87,15 +95,17 @@ export default function NavBar() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link
-            href="/auth/login"
-            className="py-2 px-6 bg-purple-600 rounded-xl"
-          >
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
+        {!user && (
+          <NavbarItem className="hidden lg:flex">
+            <Link
+              href="/auth/login"
+              className="py-2 px-6 bg-purple-600 rounded-xl"
+            >
+              Login
+            </Link>
+          </NavbarItem>
+        )}
+        <NavbarItem className={`${user ? "" : "hidden"}`}>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -111,17 +121,14 @@ export default function NavBar() {
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">zoey@example.com</p>
+                <p className="font-semibold">{user?.email}</p>
               </DropdownItem>
               <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
               <DropdownItem key="help_and_feedback">
                 Help & Feedback
               </DropdownItem>
-              <DropdownItem key="logout" color="danger">
+              <DropdownItem key="logout" color="danger" onClick={handleSignOut}>
                 Log Out
               </DropdownItem>
             </DropdownMenu>
