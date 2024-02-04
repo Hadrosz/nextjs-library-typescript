@@ -21,6 +21,15 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/components/Navbar.tsx",
+    "src/app/components/CardBooks.tsx",
+    "src/app/page.tsx",
+    "src/app/components/loginComponents/EmailLogInTemplate.tsx"
+  ],
   "exclude": ["node_modules"]
 }
