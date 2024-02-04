@@ -44,7 +44,7 @@ export function EmailSignInTemplate() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full flex flex-col gap-2"
+      className="w-full flex flex-col gap-2 "
     >
       <div className="w-full flex flex-col gap-10">
         <div>

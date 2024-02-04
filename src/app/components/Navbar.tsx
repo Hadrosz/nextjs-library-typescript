@@ -20,13 +20,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Data } from "../types/type";
 import { createClient } from "@/app/utils/supabase/client";
+import { UserResponse } from "@supabase/supabase-js";
 
-export default function NavBar({ session }: { session: Data }) {
+export default function NavBar({ session }: { session: UserResponse }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState(session.data.user);
+  const [user, setUser] = useState<Data>(session.data.user);
 
   const supabase = createClient();
   const path = usePathname();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data) {
+        setUser(data.user);
+      } else {
+        setUser(data);
+      }
+    };
+    getUser();
+  }, [session]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -34,19 +47,6 @@ export default function NavBar({ session }: { session: Data }) {
   };
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
-
-  const navbarItems = [
     { name: "Home", link: "/" },
     { name: "Books", link: "/category/books" },
     { name: "Authors", link: "/category/authors" },
@@ -66,7 +66,7 @@ export default function NavBar({ session }: { session: Data }) {
       </NavbarContent>
 
       <NavbarContent className="gap-8" justify="center">
-        {navbarItems.map((item, i) => {
+        {menuItems.map((item, i) => {
           return (
             <NavbarItem className="hidden sm:flex" key={i}>
               <Link
@@ -136,9 +136,12 @@ export default function NavBar({ session }: { session: Data }) {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className="flex">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem
+            key={`${item}-${index}`}
+            className="py-6 w-full flex justify-center border-b-1 border-gray-800"
+          >
             <Link
               color={
                 index === 2
@@ -147,13 +150,22 @@ export default function NavBar({ session }: { session: Data }) {
                   ? "danger"
                   : "foreground"
               }
-              className="w-full"
-              href="#"
+              href={item.link}
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
+        {!user && (
+          <NavbarMenuItem className="mt-8 w-full flex justify-center self-end">
+            <Link
+              href="/auth/login"
+              className="py-4 px-6 bg-purple-600 rounded-xl w-full flex justify-center font-semibold"
+            >
+              Login
+            </Link>
+          </NavbarMenuItem>
+        )}
       </NavbarMenu>
     </Navbar>
   );

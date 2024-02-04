@@ -18,7 +18,7 @@ export default function CardBooks({ book }: { book: Book }) {
 
   return (
     <TiltComponent tiltMaxAngleX={3} tiltMaxAngleY={3} className=" max-w-72">
-      <article className="flex flex-col shadow-2xl shadow-gray-800 p-4 rounded-xl max-w-72 gap-4 border-gray-700 border backdrop-blur-sm h-full ">
+      <article className="flex flex-col shadow-2xl shadow-gray-800 p-4 rounded-xl max-w-72 gap-4 border-gray-700 border  h-full ">
         <div>
           <h2 className="text-2xl text-zinc-200 truncate">{book.title}</h2>
           <span className="text-xs text-zinc-400">
@@ -32,7 +32,9 @@ export default function CardBooks({ book }: { book: Book }) {
         />
         <div className="flex justify-between">
           <div>
-            <span className="text-lg block">{AuthorData.fullName}</span>
+            <span className="text-lg block truncate">
+              {AuthorData.fullName}
+            </span>
             <span className="text-sm text-slate-400">{book.dateWritten}</span>
           </div>
           <div>

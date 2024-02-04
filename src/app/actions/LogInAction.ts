@@ -12,5 +12,7 @@ export async function logIn(user: Inputs) {
   const {
     data: { session },
   } = await supabase.auth.getSession();
+  console.log(session);
+
   return error;
 }

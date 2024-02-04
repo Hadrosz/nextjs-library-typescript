@@ -29,7 +29,9 @@
     "src/app/components/Navbar.tsx",
     "src/app/components/CardBooks.tsx",
     "src/app/page.tsx",
-    "src/app/components/loginComponents/EmailLogInTemplate.tsx"
+    "src/app/components/loginComponents/EmailLogInTemplate.tsx",
+    "src/app/assets/NavBarLogo.jsx",
+    "src/app/assets/FormsAsset.jsx"
   ],
   "exclude": ["node_modules"]
 }

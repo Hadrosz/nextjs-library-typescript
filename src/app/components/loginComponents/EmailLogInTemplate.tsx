@@ -13,7 +13,6 @@ import { useState } from "react";
 import { Inputs } from "@/app/types/type";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
 import { logIn } from "@/app/actions/LogInAction";
 
 export default function EmailTemplate() {
@@ -35,7 +34,6 @@ export default function EmailTemplate() {
       router.refresh();
     } else {
       router.refresh();
-
       router.push("/");
     }
   };

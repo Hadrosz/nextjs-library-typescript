@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./provider";
-import NavbarComponent from "./components/Navbar";
-import { createClient } from "@supabase/supabase-js";
+import NavBarServer from "@/app/components/NavbarServer";
 import { cookies } from "next/headers";
 import { createClient as cClient } from "@/app/utils/supabase/server";
 
@@ -19,15 +18,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const supabase = cClient(cookieStore);
-  const session = await supabase.auth.getUser();
-
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
         <Providers>
-          <NavbarComponent session={session} />
+          <NavBarServer />
           <main className="mx-auto max-w-screen-2xl px-6 py-8 ">
             {children}
           </main>

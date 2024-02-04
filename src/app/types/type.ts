@@ -5,10 +5,4 @@ export type Inputs = {
   username: string;
   password: string;
 };
-
-export type Data = {
-  data: {
-    user: User | null;
-  };
-  error: AuthError | null;
-};
+export type Data = User | null;
