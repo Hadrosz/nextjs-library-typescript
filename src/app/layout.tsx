@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./provider";
 import NavBarServer from "@/app/components/NavbarServer";
-import { cookies } from "next/headers";
-import { createClient as cClient } from "@/app/utils/supabase/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +24,7 @@ export default async function RootLayout({
           <NavBarServer />
           <main className="mx-auto max-w-screen-2xl px-6 py-8 ">
             {children}
+            <SpeedInsights />
           </main>
         </Providers>
       </body>

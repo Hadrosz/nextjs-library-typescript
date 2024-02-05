@@ -12,6 +12,7 @@
     "@nextui-org/react": "^2.2.9",
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.3",
+    "@vercel/speed-insights": "^1.0.9",
     "framer-motion": "^11.0.3",
     "geist": "^1.2.1",
     "next": "14.1.0",
