@@ -24,7 +24,6 @@ export default async function RootLayout({
           <NavBarServer />
           <main className="mx-auto max-w-screen-2xl px-6 py-8 ">
             {children}
-            <SpeedInsights />
           </main>
         </Providers>
       </body>
