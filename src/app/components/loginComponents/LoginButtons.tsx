@@ -9,7 +9,7 @@ export const GitHubButton = () => {
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback",
+        redirectTo: "/auth/callback",
       },
     });
   };
@@ -33,7 +33,7 @@ export const DiscordButton = () => {
     await supabase.auth.signInWithOAuth({
       provider: "discord",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback",
+        redirectTo: "/auth/callback",
       },
     });
   };
