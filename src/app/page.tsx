@@ -10,7 +10,7 @@ export default async function Home() {
   const { data: books } = await supabaseDB
     .from("Books")
     .select(
-      `*,
+      `*,link_book,
     Author ( * ),
     Genres ( * ),
     Series ( * )
@@ -20,13 +20,11 @@ export default async function Home() {
 
   return (
     <section>
-      <pre>
-        <ul className="flex flex-row justify-center flex-wrap gap-3 items-stretch ">
-          {books?.map((book) => {
-            return <CardBooks book={book} />;
-          })}
-        </ul>
-      </pre>
+      <ul className="flex flex-row justify-center flex-wrap gap-3 items-stretch ">
+        {books?.map((book) => {
+          return <CardBooks book={book} />;
+        })}
+      </ul>
     </section>
   );
 }

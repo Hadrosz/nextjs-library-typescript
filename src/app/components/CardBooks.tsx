@@ -14,6 +14,7 @@ export default function CardBooks({ book }: { book: Book }) {
     "secondary",
     "default",
   ];
+  console.log(book);
 
   const AuthorData = book.Author[0];
 
@@ -52,9 +53,12 @@ export default function CardBooks({ book }: { book: Book }) {
           >
             Details
           </Link>
-          <button className="text-md py-1 px-4 border border-purple-500 rounded-lg">
+          <a
+            href={book.link_book}
+            className="text-md py-1 px-4 border border-purple-500 rounded-lg"
+          >
             Download
-          </button>
+          </a>
         </div>
         <ul className="flex gap-2 flex-wrap">
           {book.Genres?.map((genre) => {

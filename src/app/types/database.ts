@@ -77,6 +77,7 @@ export interface Database {
           description: string
           id: string
           image_url: string
+          link_book: string
           price: number | null
           series: string | null
           title: string
@@ -86,6 +87,7 @@ export interface Database {
           description: string
           id?: string
           image_url?: string
+          link_book?: string
           price?: number | null
           series?: string | null
           title: string
@@ -95,6 +97,7 @@ export interface Database {
           description?: string
           id?: string
           image_url?: string
+          link_book?: string
           price?: number | null
           series?: string | null
           title?: string
