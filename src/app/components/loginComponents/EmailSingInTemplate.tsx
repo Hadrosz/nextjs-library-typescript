@@ -10,6 +10,7 @@ import { Inputs } from "@/app/types/type";
 
 export function EmailSignInTemplate() {
   const [errorMessage, setErrorMessage] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(false);
 
   const router = useRouter();
   const {
@@ -19,6 +20,11 @@ export function EmailSignInTemplate() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (user) => {
+    if (user.confirmPassword !== user.password) {
+      setPasswordMatch(true);
+      return;
+    }
+    setPasswordMatch(false);
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -119,15 +125,32 @@ export function EmailSignInTemplate() {
             </span>
           )}
         </div>
-
-        <Input
-          type={"password"}
-          label="Confirm Password"
-          labelPlacement="outside"
-          variant="underlined"
-          placeholder="Confirm your password"
-          startContent={<PasswordSVG />}
-        />
+        <div>
+          <Input
+            {...register("confirmPassword", {
+              required: {
+                value: true,
+                message: "Password don't match",
+              },
+              maxLength: 20,
+              minLength: {
+                value: 8,
+                message: "Min characters 8",
+              },
+            })}
+            type={"password"}
+            label="Confirm Password"
+            labelPlacement="outside"
+            variant="underlined"
+            placeholder="Confirm your password"
+            startContent={<PasswordSVG />}
+          />
+          {passwordMatch && (
+            <span className="text-red-400 text-xs mt-1">
+              Passwords don't match
+            </span>
+          )}
+        </div>
       </div>
       <div>
         <Button

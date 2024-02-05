@@ -4,5 +4,6 @@ export type Inputs = {
   email: string;
   username: string;
   password: string;
+  confirmPassword: string;
 };
 export type Data = User | null;

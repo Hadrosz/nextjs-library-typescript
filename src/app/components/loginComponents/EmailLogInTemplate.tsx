@@ -99,8 +99,7 @@ export default function EmailTemplate() {
           )}
         </div>
       </div>
-      <div className="w-full flex flex-row justify-between">
-        <Checkbox size="sm">Remeber me</Checkbox>
+      <div className="w-full flex flex-row justify-end">
         <Link href="#" className=" my-4 text-sm">
           Forgot your password?
         </Link>
