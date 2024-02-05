@@ -28,7 +28,7 @@ export function EmailSignInTemplate() {
       password: user.password,
       options: {
         data: {
-          username: user.username,
+          user_name: user.username,
         },
       },
     });

@@ -2,7 +2,7 @@ import EmailTemplate from "@/app/components/loginComponents/EmailLogInTemplate";
 import { Divider } from "@nextui-org/react";
 import {
   GitHubButton,
-  GoogleButton,
+  DiscordButton,
 } from "@/app/components/loginComponents/LoginButtons";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ export default function SignInPage() {
         <div className="flex place-items-center before:absolute before:h-[100px] before:w-full sm:before:w-[70px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[150px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-purple-500 before:dark:opacity-10 after:dark:from-purple-500 after:dark:via-[#8d01ff] after:dark:opacity-40 before:lg:h-[160px] z-[-1] absolute top-1/4 left-0" />
         <h1 className="text-md w-full">Log In with:</h1>
         <section className="flex justify-center flex-col w-full">
-          <GoogleButton />
+          <DiscordButton />
           <GitHubButton />
         </section>
         <Divider />

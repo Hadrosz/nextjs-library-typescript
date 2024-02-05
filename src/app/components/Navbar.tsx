@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import { Data } from "../types/type";
 import { createClient } from "@/app/utils/supabase/client";
 import { UserResponse } from "@supabase/supabase-js";
+import { LogSVG } from "../assets/FormsAsset";
 
 export default function NavBar({ session }: { session: UserResponse }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
 
   const supabase = createClient();
   const path = usePathname();
+  const userUsername = user?.user_metadata.user_name;
 
   useEffect(() => {
     const getUser = async () => {
@@ -112,23 +114,37 @@ export default function NavBar({ session }: { session: UserResponse }) {
                 isBordered
                 as="button"
                 className="transition-transform"
-                color="primary"
-                name="Jason Hughes"
+                color="secondary"
+                name={userUsername}
                 size="sm"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                src={
+                  user?.user_metadata.image_url
+                    ? `${user.user_metadata.image_url}`
+                    : `https://unavatar.io/${userUsername}`
+                }
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">{user?.email}</p>
+            <DropdownMenu
+              aria-label="Profile Actions"
+              variant="shadow"
+              className="w-[230px]"
+            >
+              <DropdownItem key="profile" className="h-20 gap-3">
+                <p className="font-bold">Signed in as</p>
+                <p className="font-medium">{userUsername}</p>
+                <p className="font-medium truncate">{user?.email}</p>
               </DropdownItem>
               <DropdownItem key="settings">My Settings</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
               <DropdownItem key="help_and_feedback">
                 Help & Feedback
               </DropdownItem>
-              <DropdownItem key="logout" color="danger" onClick={handleSignOut}>
+              <DropdownItem
+                key="logout"
+                onClick={handleSignOut}
+                className="flex flex-row bg-red-500 hover:bg-red-600 "
+                startContent={<LogSVG />}
+              >
                 Log Out
               </DropdownItem>
             </DropdownMenu>

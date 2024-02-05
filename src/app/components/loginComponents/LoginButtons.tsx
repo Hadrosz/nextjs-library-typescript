@@ -1,12 +1,22 @@
 "use client";
-import { GitHubSVG, GoogleSVG } from "@/app/assets/FormsAsset";
+import { GitHubSVG, DiscordSVG } from "@/app/assets/FormsAsset";
+import { createClient } from "@/app/utils/supabase/client";
 
 export const GitHubButton = () => {
+  const supabase = createClient();
+
+  const handleSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: "http://localhost:3000/auth/callback",
+      },
+    });
+  };
+
   return (
     <button
-      onClick={() => {
-        alert("Login...");
-      }}
+      onClick={handleSignIn}
       type="button"
       className="text-white bg-[#24292F]  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  me-2 mb-2 justify-center"
     >
@@ -16,16 +26,24 @@ export const GitHubButton = () => {
   );
 };
 
-export const GoogleButton = () => {
+export const DiscordButton = () => {
+  const supabase = createClient();
+
+  const handleSignIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "discord",
+      options: {
+        redirectTo: "http://localhost:3000/auth/callback",
+      },
+    });
+  };
   return (
     <button
-      onClick={() => {
-        alert("Login...");
-      }}
+      onClick={handleSignIn}
       type="button"
-      className="text-black bg-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex gap-2 items-center me-2 mb-2 justify-center"
+      className="text-white  bg-[#7289DA] font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex gap-2 items-center me-2 mb-2 justify-center"
     >
-      <GoogleSVG />
+      <DiscordSVG />
       Sign in with Google
     </button>
   );

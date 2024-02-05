@@ -3,6 +3,7 @@ import { Chip } from "@nextui-org/react";
 import Link from "next/link";
 import TiltComponent from "react-parallax-tilt";
 import { Book } from "@/app/types/Book";
+import Image from "next/image";
 
 export default function CardBooks({ book }: { book: Book }) {
   const colors = [
@@ -26,7 +27,10 @@ export default function CardBooks({ book }: { book: Book }) {
           </span>
         </div>
 
-        <img
+        <Image
+          alt={`${book.title} image`}
+          width={400}
+          height={400}
           src={book.image_url}
           className="rounded-lg h-[400px] object-cover"
         />

@@ -14,6 +14,7 @@ import { Inputs } from "@/app/types/type";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { logIn } from "@/app/actions/LogInAction";
+import { createClient } from "@/app/utils/supabase/client";
 
 export default function EmailTemplate() {
   const [isVisible, setIsVisible] = useState(false);
