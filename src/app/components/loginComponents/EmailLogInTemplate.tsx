@@ -32,7 +32,7 @@ export default function EmailTemplate() {
   const onSubmit: SubmitHandler<Inputs> = async (user) => {
     const error = await logIn(user);
     if (error) {
-      router.refresh();
+      setErrorMessage(error.message);
     } else {
       router.refresh();
       router.push("/");
