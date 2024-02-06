@@ -4,7 +4,6 @@ import { Chip } from "@nextui-org/react";
 import { type UUID } from "crypto";
 import CardBook from "@/app/components/CardBooks";
 import { Details } from "@/app/types/type";
-import { MyButton } from "@/app/components/ui/button";
 import CardAuthor from "@/app/components/CardAuthor";
 
 export default async function IndividualBookPage({
