@@ -13,7 +13,7 @@ export default async function Home() {
           Empower Your Mind, One Step at a Time
         </h1>
         <h2 className="text-5xl  leading-tight  font-semi text-center text-balance">
-          Get your next favor4te adventure with just a click
+          Get your next favorite adventure with just a click
         </h2>
       </article>
     </section>

@@ -83,7 +83,7 @@ export default function BookClientPage({
               const color = colors[valueColor];
               return (
                 <li key={genre.id}>
-                  <Chip variant="dot" size="lg" color={color}>
+                  <Chip variant="dot" size="lg" color="secondary">
                     {genre.name}
                   </Chip>
                 </li>
