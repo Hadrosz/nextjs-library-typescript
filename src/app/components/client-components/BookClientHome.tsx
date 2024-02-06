@@ -1,42 +1,44 @@
-import { createClient } from "@supabase/supabase-js";
-import { Chip } from "@nextui-org/react";
-import CardBook from "@/app/components/CardBooks";
-import { Details } from "@/app/types/type";
-import CardAuthor from "@/app/components/CardAuthor";
+"use client";
 import { Book } from "@/app/types/Book";
-import ListCardBook from "@/app/components/ListCardBook";
+import CardAuthor from "../CardAuthor";
+import CardBook from "../CardBooks";
+import { Chip } from "@nextui-org/react";
+import ListCardBook from "../ListCardBook";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
 
-export default async function IndividualBookPage({ params }) {
-  const supabaseDB = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-  const { data: book } = await supabaseDB
-    .from("Books")
-    .select(
-      `*,
-    Author ( * ),
-    Genres ( * ),
-    Series ( * )
-    `
-    )
-    .eq("id", `${params.bookId}`)
-    .single();
-  const author = book?.Author[0];
-
-  const { data: seriesBook } = await supabaseDB
-    .from("Books")
-    .select("*, Series( * ), Genres( * ), Author( * )")
-    .eq("series", `${book.series}`)
-    .order("dateWritten", { ascending: true });
-
-  console.log(seriesBook);
-
+export default function BookClientPage({
+  book,
+  seriesBook,
+}: {
+  book: Book;
+  seriesBook: any;
+}) {
   const details = {
     show: false,
   };
+  const author = book?.Author[0];
+  const pathname = usePathname();
+  const path = pathname.split("/");
+  path.shift();
+
   return (
     <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-16">
+      <article className="w-full flex justify-end">
+        <Breadcrumbs size="lg">
+          {path.map((pathElement) => {
+            if (pathElement == book.id) {
+              return <BreadcrumbItem>{book.title}</BreadcrumbItem>;
+            }
+            return (
+              <BreadcrumbItem className="capitalize">
+                {pathElement}
+              </BreadcrumbItem>
+            );
+          })}
+        </Breadcrumbs>
+      </article>
+
       <article className="gap-5 lg:grid lg:grid-cols-2 items-start flex flex-col ">
         <div className="flex flex-col gap-5 justify-center items-center sm:items-stretch sm:flex sm:flex-row ">
           <CardBook book={book} styles={details} />

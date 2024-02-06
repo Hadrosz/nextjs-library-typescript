@@ -25,8 +25,8 @@ export default function CardBook({
   const author = book?.Author[0];
 
   return (
-    <TiltComponent tiltMaxAngleX={3} tiltMaxAngleY={3} className=" max-w-72">
-      <article className="flex flex-col shadow-2xl shadow-gray-800 p-4 rounded-xl max-w-72 gap-4 border-gray-700 border  h-full ">
+    <TiltComponent tiltMaxAngleX={3} tiltMaxAngleY={3} className=" max-w-72  ">
+      <article className="flex flex-col shadow-2xl  backdrop-blur-3xl bg-black/70 shadow-gray-800 p-4 rounded-xl max-w-72 gap-4 border-gray-700 border  h-full ">
         <div>
           <h2 className="text-2xl text-zinc-200 truncate">{book?.title}</h2>
           <div className="flex ">
@@ -56,7 +56,7 @@ export default function CardBook({
           <div className="flex flex-col gap-4">
             <div className="flex justify-between">
               <Link
-                href={`/books/${book?.id}`}
+                href={`/category/books/${book?.id}`}
                 className="text-md py-1 px-4 bg-purple-500 rounded-lg just"
               >
                 Details

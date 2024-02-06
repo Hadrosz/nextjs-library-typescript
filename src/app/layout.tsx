@@ -29,7 +29,6 @@ export default async function RootLayout({
             {children}
           </main>
         </Providers>
-        <SpeedInsights />
       </body>
     </html>
   );

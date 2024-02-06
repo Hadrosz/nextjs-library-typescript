@@ -1,0 +1,137 @@
+commit 4e769fac7650f65a4e261545601eeb23cf1ccce0
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 23:59:08 2024 -0500
+
+    Show series books into books itnernal
+
+commit c4ac99fa201f62b3a99dd5b8ae9f2c492e417832
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 23:14:51 2024 -0500
+
+    .
+
+commit 2a0c0a68a7045409a452903fea9895fe52279c24
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 23:12:25 2024 -0500
+
+    .
+
+commit 70ebef7a394dd26e2add9c7aca3ad4006f8256fc
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 23:10:41 2024 -0500
+
+    Change class from JSX to TSX
+
+commit 57123f7c28e5c37418c815abc966f5a6118bdfb7
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 23:06:46 2024 -0500
+
+    Third try
+
+commit 0883bf22dcb9c207da5b646c0e8cb72d67a1d9e5
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 22:49:33 2024 -0500
+
+    Fixed internal
+
+commit 0d2f914531fbb9cf51b06f23c9fc25aadf4f3f5c
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 21:56:10 2024 -0500
+
+    x
+
+commit 4639ccec20d92ae24e828453e7b772ba07452f12
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 21:54:32 2024 -0500
+
+    Fixed Error
+
+commit 801771cca2d71e2f66cc3895d258612c6e8a1865
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 21:52:52 2024 -0500
+
+    Interal books
+
+commit b4fa1e82562e09ac4942b0d42b57cf03d8093994
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Mon Feb 5 00:14:07 2024 -0500
+
+    AuthValidationConfirm
+
+commit 314c3c03793b5c4a58a577ef79c1ac6659ceb134
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 23:49:14 2024 -0500
+
+    Card Correction
+
+commit 3c625623a0b6d4b007469299c35c649757ee9a2a
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 23:09:58 2024 -0500
+
+    Eliminated Problem
+
+commit ff9268b365b77243b2c1621bd8df8ee5cc07118b
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 23:06:20 2024 -0500
+
+    Update
+
+commit 090920207dd93954353c73701cb0079c5963d201
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 22:57:56 2024 -0500
+
+    Speed
+
+commit a05b98dea954b861098886ff42bf559a1c9d15e7
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 22:31:27 2024 -0500
+
+    ChangesLogIn
+
+commit 0bf23b548aeb938bb266f41e7e8a331501656fbc
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 22:24:26 2024 -0500
+
+    Change .env
+
+commit 1aa55a6d9ef1488a21ebe2aa6b8de424cd298483
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 22:14:37 2024 -0500
+
+    Deploy Vercel
+
+commit 9fe5fdebfaa6b0c0f18af9539f7b40b3330d44a7
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 19:55:03 2024 -0500
+
+    OAuth done
+
+commit 777a4b9177487633b508d204ce7c3679c77f6e5c
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 17:51:16 2024 -0500
+
+    Navbar Fixed with Auth
+
+commit 26a40b3237df88f7dd3b0b4052465267f9282d7d
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 02:53:42 2024 -0500
+
+    Update messages about navbar
+
+commit e13874d41460ab93d26acb798271398a5f40c590
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sun Feb 4 01:06:02 2024 -0500
+
+    Login and Signup complete
+
+commit 221e72473730798c9e3e4053d3b853bfc4d723ed
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Sat Feb 3 20:54:15 2024 -0500
+
+    Design home, login, signin, conec db
+
+commit f8e57c382c81850b6cd575f4ece28a0b187e6401
+Author: Alejadro Vasquez <Alejandro.vasquezes17@gmail.com>
+Date:   Thu Feb 1 13:14:56 2024 -0500
+
+    Initial commit from Create Next App

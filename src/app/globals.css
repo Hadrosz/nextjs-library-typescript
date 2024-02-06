@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+
+  .blue__gradient {
+    background: linear-gradient(180deg, #1d4ed8 0%, #0c4a6e 100%);
+    filter: blur(123px);
+  }
+
+  .purple__gradient {
+    background: linear-gradient(180deg, #a855f7 0%, #8d01ff 100%);
+    filter: blur(123px);
+  }
+
+  .text-gradient {
+    background: radial-gradient(
+      64.18% 64.18% at 71.16% 35.69%,
+      #bfd0fe 0.89%,
+      #93affd 17.23%,
+      #6088fa 42.04%,
+      #a855f7 55.12%,
+      #2559eb 71.54%,
+      #7a22ce 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+}

@@ -9,22 +9,9 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        nextDefault: "#3f3f46",
-        nextPrimary: "#006FEE",
-        nextSecondary: "#9353d3",
-        nextSuccess: "#17c964",
-        nextWarning: "#f5a524",
-        nextDanger: "#f31260",
-      },
-    },
+    extend: {},
   },
   darkMode: "class",
-  plugins: [
-    nextui({
-      addCommonColors: true,
-    }),
-  ],
+  plugins: [nextui()],
 };
 export default config;

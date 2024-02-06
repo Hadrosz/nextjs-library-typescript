@@ -32,7 +32,7 @@
     "src/app/components/loginComponents/EmailLogInTemplate.tsx",
     "src/app/assets/NavBarLogo.jsx",
     "src/app/assets/FormsAsset.jsx",
-    "src/app/books/[bookId]/page.jsx"
+    "src/app/category/books/[bookId]/page.jsx"
   ],
   "exclude": ["node_modules"]
 }
