@@ -19,6 +19,8 @@ export default async function Home() {
     )
     .order("dateWritten", { ascending: true });
 
+  console.log(typeof books);
+
   return (
     <section>
       <h1 className="text-3xl mb-2">Books</h1>

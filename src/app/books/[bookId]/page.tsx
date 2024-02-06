@@ -5,6 +5,7 @@ import { type UUID } from "crypto";
 import CardBook from "@/app/components/CardBooks";
 import { Details } from "@/app/types/type";
 import CardAuthor from "@/app/components/CardAuthor";
+import { Book } from "@/app/types/Book";
 
 export default async function IndividualBookPage({
   params,
@@ -15,7 +16,7 @@ export default async function IndividualBookPage({
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  const { data } = await supabaseDB
+  const { data: book } = await supabaseDB
     .from("Books")
     .select(
       `*,
@@ -24,9 +25,8 @@ export default async function IndividualBookPage({
     Series ( * )
     `
     )
-    .eq("id", `${params.bookId}`);
-
-  const book = data?.[0];
+    .eq("id", `${params.bookId}`)
+    .single();
 
   const author = book?.Author[0];
 
@@ -34,18 +34,18 @@ export default async function IndividualBookPage({
     show: false,
   };
   return (
-    <section className="  h-[calc(100vh-8rem)] justify-center gap-10 flex place-items-center">
-      <article className="place-content-center gap-5 grid grid-cols-2">
-        <div className="flex gap-5 place-content-center place-items-center items-stretch ">
+    <section className="lg:h-[calc(100vh-8rem)] h-auto justify-center gap-10 flex place-items-center">
+      <article className="place-content-center gap-5 lg:grid lg:grid-cols-2 flex flex-col ">
+        <div className="flex flex-col gap-5 justify-center items-center sm:items-stretch sm:flex sm:flex-row ">
           <CardBook book={book} styles={details} />
           <CardAuthor author={author} />
         </div>
         <div>
           <h1 className="font-semibold text-5xl ">
-            Book details: {book.title}
+            Book details: {book?.title}
           </h1>
           <h2 className="font-semibold text-3xl mt-7 mb-3">Description</h2>
-          <p className="text-lg text-pretty">{book.description}</p>
+          <p className="text-lg text-pretty">{book?.description}</p>
           <h2 className="font-semibold text-3xl mt-7 mb-3">Details</h2>
           <ul className="flex gap-3 flex-wrap mb-4">
             <li key={0}>
