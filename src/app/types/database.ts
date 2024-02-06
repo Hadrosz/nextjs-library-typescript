@@ -11,28 +11,31 @@ export interface Database {
     Tables: {
       Author: {
         Row: {
-          bornDate: string | null
+          bornDate: string
+          briography: string | null
           deathDate: string | null
           fullName: string
           id: number
           nationality: number
-          picture_url: string | null
+          picture_url: string
         }
         Insert: {
-          bornDate?: string | null
+          bornDate: string
+          briography?: string | null
           deathDate?: string | null
           fullName?: string
           id?: number
           nationality: number
-          picture_url?: string | null
+          picture_url?: string
         }
         Update: {
-          bornDate?: string | null
+          bornDate?: string
+          briography?: string | null
           deathDate?: string | null
           fullName?: string
           id?: number
           nationality?: number
-          picture_url?: string | null
+          picture_url?: string
         }
         Relationships: [
           {
