@@ -4,6 +4,7 @@ import CardBook from "@/app/components/CardBooks";
 import { Details } from "@/app/types/type";
 import CardAuthor from "@/app/components/CardAuthor";
 import { Book } from "@/app/types/Book";
+import ListCardBook from "@/app/components/ListCardBook";
 
 export default async function IndividualBookPage({ params }) {
   const supabaseDB = createClient(
@@ -21,15 +22,22 @@ export default async function IndividualBookPage({ params }) {
     )
     .eq("id", `${params.bookId}`)
     .single();
-
   const author = book?.Author[0];
+
+  const { data: seriesBook } = await supabaseDB
+    .from("Books")
+    .select("*, Series( * ), Genres( * ), Author( * )")
+    .eq("series", `${book.series}`)
+    .order("dateWritten", { ascending: true });
+
+  console.log(seriesBook);
 
   const details = {
     show: false,
   };
   return (
-    <section className="lg:h-[calc(100vh-8rem)] h-auto justify-center gap-10 flex place-items-center">
-      <article className="place-content-center gap-5 lg:grid lg:grid-cols-2 flex flex-col ">
+    <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-16">
+      <article className="gap-5 lg:grid lg:grid-cols-2 items-start flex flex-col ">
         <div className="flex flex-col gap-5 justify-center items-center sm:items-stretch sm:flex sm:flex-row ">
           <CardBook book={book} styles={details} />
           <CardAuthor author={author} />
@@ -82,6 +90,18 @@ export default async function IndividualBookPage({ params }) {
           </ul>
         </div>
       </article>
+      {book.Series && (
+        <article className="w-full mb-14">
+          <h2 className="font-semibold text-4xl">
+            Look all books from {book.Series.Name}
+          </h2>
+          <ul className="flex flex-row flex-wrap gap-3 items-stretch mt-6">
+            {seriesBook.map((serieBook) => {
+              return <ListCardBook book={serieBook} />;
+            })}
+          </ul>
+        </article>
+      )}
     </section>
   );
 }
