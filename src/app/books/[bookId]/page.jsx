@@ -1,20 +1,14 @@
-import { type Database } from "@/app/types/database";
 import { createClient } from "@supabase/supabase-js";
 import { Chip } from "@nextui-org/react";
-import { type UUID } from "crypto";
 import CardBook from "@/app/components/CardBooks";
 import { Details } from "@/app/types/type";
 import CardAuthor from "@/app/components/CardAuthor";
 import { Book } from "@/app/types/Book";
 
-export default async function IndividualBookPage({
-  params,
-}: {
-  params: { bookId: UUID };
-}) {
-  const supabaseDB = createClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+export default async function IndividualBookPage({ params }) {
+  const supabaseDB = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
   const { data: book } = await supabaseDB
     .from("Books")
@@ -30,7 +24,7 @@ export default async function IndividualBookPage({
 
   const author = book?.Author[0];
 
-  const details: Details = {
+  const details = {
     show: false,
   };
   return (
