@@ -7,13 +7,7 @@ import ListCardBook from "../ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 
-export default function BookClientPage({
-  book,
-  seriesBook,
-}: {
-  book: Book;
-  seriesBook: Book;
-}) {
+export default function BookClientPage({ book, seriesBook }) {
   const details = {
     show: false,
   };

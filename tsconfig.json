@@ -32,7 +32,8 @@
     "src/app/components/loginComponents/EmailLogInTemplate.tsx",
     "src/app/assets/NavBarLogo.jsx",
     "src/app/assets/FormsAsset.jsx",
-    "src/app/category/books/[bookId]/page.jsx"
+    "src/app/category/books/[bookId]/page.jsx",
+    "src/app/components/client-components/BookClientHome.jsx"
   ],
   "exclude": ["node_modules"]
 }
