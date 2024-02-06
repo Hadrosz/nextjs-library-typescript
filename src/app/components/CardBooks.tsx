@@ -40,7 +40,7 @@ export default function CardBook({
           alt={`${book?.title} image`}
           width={400}
           height={400}
-          src={book.image_url}
+          src={`${book?.image_url}`}
           className="rounded-lg h-[400px] object-cover"
         />
         <div className="flex justify-between">
@@ -62,7 +62,7 @@ export default function CardBook({
                 Details
               </Link>
               <Link
-                href={book.link_book}
+                href={`${book?.link_book}`}
                 className="text-md py-1 px-4 border border-purple-500 rounded-lg"
               >
                 Download
