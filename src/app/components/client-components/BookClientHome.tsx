@@ -12,7 +12,7 @@ export default function BookClientPage({
   seriesBook,
 }: {
   book: Book;
-  seriesBook: any;
+  seriesBook: Book;
 }) {
   const details = {
     show: false,
