@@ -1,9 +1,8 @@
 "use client";
-import { Book } from "@/app/types/Book";
-import CardAuthor from "../CardAuthor";
-import CardBook from "../CardBooks";
+import CardAuthor from "@/components/cards/CardAuthor";
+import CardBook from "@/components/cards/CardBooks";
 import { Chip } from "@nextui-org/react";
-import ListCardBook from "../ListCardBook";
+import ListCardBook from "@/components/cards/ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 

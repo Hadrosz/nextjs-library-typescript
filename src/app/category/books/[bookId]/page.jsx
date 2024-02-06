@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import BookClientPage from "@/app/components/client-components/BookClientHome";
+import BookClientPage from "@/components/client-components/BookClientHome";
 
 export default async function IndividualBookPage({ params }) {
   const supabaseDB = createClient(
