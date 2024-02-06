@@ -26,7 +26,7 @@ export default async function IndividualBookPage({
     )
     .eq("id", `${params.bookId}`);
 
-  const book = data[0];
+  const book = data?.[0];
 
   const author = book?.Author[0];
 
