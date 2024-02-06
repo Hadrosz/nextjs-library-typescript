@@ -1,12 +1,12 @@
 "use client";
-import { EmailSVG, LogSVG, PasswordSVG } from "@/app/assets/FormsAsset";
+import { EmailSVG, LogSVG, PasswordSVG } from "@/components/assets/FormsAsset";
 
 import { Button, Input } from "@nextui-org/react";
 import { createClient } from "@supabase/supabase-js";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Inputs } from "@/app/types/type";
+import { Inputs } from "@/libs/types/general";
 
 export function EmailSignInTemplate() {
   const [errorMessage, setErrorMessage] = useState(false);

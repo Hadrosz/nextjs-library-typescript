@@ -30,8 +30,8 @@
     "src/app/components/ListCardBook.tsx",
     "src/app/page.tsx",
     "src/app/components/loginComponents/EmailLogInTemplate.tsx",
-    "src/app/assets/NavBarLogo.jsx",
-    "src/app/assets/FormsAsset.jsx",
+    "src/components/assets/NavBarLogo.jsx",
+    "src/components/assets/FormsAsset.jsx",
     "src/app/category/books/[bookId]/page.jsx",
     "src/app/components/client-components/BookClientHome.jsx"
   ],

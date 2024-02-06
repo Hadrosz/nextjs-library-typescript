@@ -2,9 +2,9 @@
 import { Chip } from "@nextui-org/react";
 import Link from "next/link";
 import TiltComponent from "react-parallax-tilt";
-import { Book } from "@/app/types/Book";
+import { Book } from "@/libs/types/tables";
 import Image from "next/image";
-import { Details } from "../types/type";
+import { Details } from "@/libs/types/general";
 
 export default function CardBook({
   book,
@@ -13,15 +13,6 @@ export default function CardBook({
   book: Book | null;
   styles: Details;
 }) {
-  const colors = [
-    "warning",
-    "success",
-    "danger",
-    "primary",
-    "secondary",
-    "default",
-  ];
-
   const author = book?.Author[0];
 
   return (
@@ -71,9 +62,6 @@ export default function CardBook({
 
             <ul className="flex gap-2 flex-wrap">
               {book?.Genres?.map((genre) => {
-                const valueColor = Math.floor(Math.random() * colors.length);
-                const color = colors[valueColor];
-
                 return (
                   <li key={genre.id}>
                     <Chip color="primary" variant="dot">

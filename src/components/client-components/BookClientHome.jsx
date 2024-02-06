@@ -17,7 +17,7 @@ export default function BookClientPage({ book, seriesBook }) {
   path.shift();
 
   return (
-    <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-16">
+    <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-8 ">
       <article className="w-full flex justify-end">
         <Breadcrumbs size="lg">
           {path.map((pathElement) => {

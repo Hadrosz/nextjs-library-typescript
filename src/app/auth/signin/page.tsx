@@ -1,4 +1,4 @@
-import { EmailSignInTemplate } from "@/app/components/loginComponents/EmailSingInTemplate";
+import { EmailSignInTemplate } from "@/components/loginComponents/EmailSingInTemplate";
 
 export default function SignInPage() {
   return (

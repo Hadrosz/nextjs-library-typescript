@@ -1,5 +1,5 @@
-import ListCardBook from "@/app/components/ListCardBook";
-import { Database } from "@/app/types/database";
+import ListCardBook from "@/components/cards/ListCardBook";
+import { Database } from "@/libs/types/database";
 import { createClient } from "@supabase/supabase-js";
 
 export default async function booksPage() {

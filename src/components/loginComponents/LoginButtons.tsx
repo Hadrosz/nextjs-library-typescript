@@ -1,6 +1,6 @@
 "use client";
-import { GitHubSVG, DiscordSVG } from "@/app/assets/FormsAsset";
-import { createClient } from "@/app/utils/supabase/client";
+import { GitHubSVG, DiscordSVG } from "@/components/assets/FormsAsset";
+import { createClient } from "@/libs/supabase/client";
 
 export const GitHubButton = () => {
   const supabase = createClient();

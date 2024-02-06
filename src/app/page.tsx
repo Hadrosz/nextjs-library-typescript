@@ -1,8 +1,3 @@
-import ListCardBook from "@/app/components/ListCardBook";
-import CardBooks from "@/app/components/ListCardBook";
-import { type Database } from "@/app/types/database";
-import { createClient } from "@supabase/supabase-js";
-
 export default async function Home() {
   return (
     <section className="">

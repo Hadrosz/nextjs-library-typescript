@@ -6,15 +6,14 @@ import {
   EyeSlashFilledIcon,
   PasswordSVG,
   LogSVG,
-} from "@/app/assets/FormsAsset";
+} from "@/components/assets/FormsAsset";
 import { Button, Checkbox, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useState } from "react";
-import { Inputs } from "@/app/types/type";
+import { Inputs } from "@/libs/types/general";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { logIn } from "@/app/actions/LogInAction";
-import { createClient } from "@/app/utils/supabase/client";
+import { logIn } from "@/libs/actions/LogInAction";
 
 export default function EmailTemplate() {
   const [isVisible, setIsVisible] = useState(false);

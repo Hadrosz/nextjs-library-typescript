@@ -1,6 +1,6 @@
-import { createClient } from "@/app/utils/supabase/server";
+import { createClient } from "@/libs/supabase/server";
 import { cookies } from "next/headers";
-import NavBar from "@/app/components/Navbar";
+import NavBar from "@/components/Navbar";
 import { UserResponse } from "@supabase/supabase-js";
 
 export default async function NavBarServer() {

@@ -1,4 +1,4 @@
-import { type Database, Tables } from "@/app/types/database";
+import { type Database, Tables } from "@/libs/types/database";
 
 export type Book = Tables<"Books"> & {
   Author: Tables<"Author">[];

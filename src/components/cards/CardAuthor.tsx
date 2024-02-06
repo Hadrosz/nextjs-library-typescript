@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import TiltComponent from "react-parallax-tilt";
-import { Author } from "../types/Book";
+import { Author } from "@/libs/types/tables";
 
 export default function CardAuthor({ author }: { author: Author | null }) {
   function calculateAge() {

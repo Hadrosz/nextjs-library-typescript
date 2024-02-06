@@ -15,13 +15,13 @@ import {
   DropdownItem,
   Avatar,
 } from "@nextui-org/react";
-import { SearchIcon } from "@/app/assets/NavBarLogo";
+import { SearchIcon } from "@/components/assets/NavBarLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Data } from "../types/type";
-import { createClient } from "@/app/utils/supabase/client";
+import { Data } from "@/libs/types/general";
+import { createClient } from "@/libs/supabase/client";
 import { UserResponse } from "@supabase/supabase-js";
-import { LogSVG } from "../assets/FormsAsset";
+import { LogSVG } from "@/components/assets/FormsAsset";
 
 export default function NavBar({ session }: { session: UserResponse }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

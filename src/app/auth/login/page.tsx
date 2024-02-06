@@ -1,9 +1,9 @@
-import EmailTemplate from "@/app/components/loginComponents/EmailLogInTemplate";
+import EmailTemplate from "@/components/loginComponents/EmailLogInTemplate";
 import { Divider } from "@nextui-org/react";
 import {
   GitHubButton,
   DiscordButton,
-} from "@/app/components/loginComponents/LoginButtons";
+} from "@/components/loginComponents/LoginButtons";
 import Link from "next/link";
 
 export default function LogInPage() {
