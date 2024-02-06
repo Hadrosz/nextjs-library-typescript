@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/components/Navbar.tsx",
-    "src/app/components/CardBooks.tsx",
+    "src/app/components/ListCardBook.tsx",
     "src/app/page.tsx",
     "src/app/components/loginComponents/EmailLogInTemplate.tsx",
     "src/app/assets/NavBarLogo.jsx",

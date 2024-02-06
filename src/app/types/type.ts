@@ -7,3 +7,9 @@ export type Inputs = {
   confirmPassword: string;
 };
 export type Data = User | null;
+
+export type Details = {
+  show: boolean;
+  width?: number;
+  height?: number;
+};

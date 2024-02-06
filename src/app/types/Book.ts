@@ -5,3 +5,5 @@ export type Book = Tables<"Books"> & {
   Genres: Tables<"Genres">[];
   Series: Tables<"Series"> | null;
 };
+
+export type Author = Tables<"Author">;

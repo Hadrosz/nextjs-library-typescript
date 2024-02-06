@@ -16,6 +16,7 @@ export interface Database {
           fullName: string
           id: number
           nationality: number
+          picture_url: string | null
         }
         Insert: {
           bornDate?: string | null
@@ -23,6 +24,7 @@ export interface Database {
           fullName?: string
           id?: number
           nationality: number
+          picture_url?: string | null
         }
         Update: {
           bornDate?: string | null
@@ -30,6 +32,7 @@ export interface Database {
           fullName?: string
           id?: number
           nationality?: number
+          picture_url?: string | null
         }
         Relationships: [
           {
@@ -78,6 +81,7 @@ export interface Database {
           id: string
           image_url: string
           link_book: string
+          pages: number | null
           price: number | null
           series: string | null
           title: string
@@ -88,6 +92,7 @@ export interface Database {
           id?: string
           image_url?: string
           link_book?: string
+          pages?: number | null
           price?: number | null
           series?: string | null
           title: string
@@ -98,6 +103,7 @@ export interface Database {
           id?: string
           image_url?: string
           link_book?: string
+          pages?: number | null
           price?: number | null
           series?: string | null
           title?: string

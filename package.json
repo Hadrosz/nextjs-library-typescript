@@ -19,8 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.50.0",
-    "react-parallax-tilt": "^1.7.209",
-    "react-tilt": "^1.0.2"
+    "react-parallax-tilt": "^1.7.209"
   },
   "devDependencies": {
     "@types/node": "^20",

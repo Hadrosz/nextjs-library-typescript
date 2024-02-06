@@ -1,4 +1,5 @@
-import CardBooks from "@/app/components/CardBooks";
+import ListCardBook from "@/app/components/ListCardBook";
+import CardBooks from "@/app/components/ListCardBook";
 import { type Database } from "@/app/types/database";
 import { createClient } from "@supabase/supabase-js";
 
@@ -20,9 +21,10 @@ export default async function Home() {
 
   return (
     <section>
+      <h1 className="text-3xl mb-2">Books</h1>
       <ul className="flex flex-row justify-center flex-wrap gap-3 items-stretch ">
         {books?.map((book) => {
-          return <CardBooks book={book} />;
+          return <ListCardBook book={book} />;
         })}
       </ul>
     </section>
