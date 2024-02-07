@@ -8,4 +8,4 @@ export type Book =
     })
   | null;
 
-export type Author = Tables<"Author"> | undefined;
+export type Author = Tables<"Author">;

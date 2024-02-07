@@ -17,7 +17,7 @@ export default function BookClientPage({
   const details = {
     show: false,
   };
-  const author: Author = book?.Author?.[0];
+  const author: Author | undefined = book?.Author?.[0];
   const pathname = usePathname();
   const path = pathname.split("/");
   path.shift();
