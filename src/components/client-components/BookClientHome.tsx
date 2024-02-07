@@ -5,7 +5,7 @@ import { Chip } from "@nextui-org/react";
 import ListCardBook from "@/components/cards/ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
-import { Author, Book } from "@/libs/types/tables";
+import { Book } from "@/libs/types/tables";
 
 export default function BookClientPage({
   book,

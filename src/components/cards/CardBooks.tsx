@@ -13,7 +13,7 @@ export default function CardBook({
   book: Book | null;
   styles: Details;
 }) {
-  const author = book?.Author[0];
+  const author = book?.Author?.[0];
 
   return (
     <TiltComponent tiltMaxAngleX={3} tiltMaxAngleY={3} className=" max-w-72  ">
