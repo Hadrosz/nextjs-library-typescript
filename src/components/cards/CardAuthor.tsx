@@ -4,7 +4,7 @@ import Link from "next/link";
 import TiltComponent from "react-parallax-tilt";
 import { Author } from "@/libs/types/tables";
 
-export default function CardAuthor({ author }: { author: Author | null }) {
+export default function CardAuthor({ author }: { author: Author | undefined }) {
   function calculateAge() {
     if (author?.deathDate) {
       const bornDate = new Date(author.bornDate);

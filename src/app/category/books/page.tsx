@@ -1,22 +1,8 @@
 import ListCardBook from "@/components/cards/ListCardBook";
-import { Database } from "@/libs/types/database";
-import { createClient } from "@supabase/supabase-js";
+import { getBooks } from "@/libs/supabase/queries";
 
 export default async function booksPage() {
-  const supabaseDB = createClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-  const { data: books } = await supabaseDB
-    .from("Books")
-    .select(
-      `*,link_book,
-    Author ( * ),
-    Genres ( * ),
-    Series ( * )
-    `
-    )
-    .order("dateWritten", { ascending: true });
+  const books = await getBooks();
 
   return (
     <section className="relative">

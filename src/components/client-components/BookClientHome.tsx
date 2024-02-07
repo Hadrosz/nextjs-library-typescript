@@ -5,12 +5,19 @@ import { Chip } from "@nextui-org/react";
 import ListCardBook from "@/components/cards/ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import { Author, Book } from "@/libs/types/tables";
 
-export default function BookClientPage({ book, seriesBook }) {
+export default function BookClientPage({
+  book,
+  seriesBook,
+}: {
+  book: Book;
+  seriesBook: Book[] | null;
+}) {
   const details = {
     show: false,
   };
-  const author = book?.Author[0];
+  const author: Author = book?.Author?.[0];
   const pathname = usePathname();
   const path = pathname.split("/");
   path.shift();
@@ -20,7 +27,7 @@ export default function BookClientPage({ book, seriesBook }) {
       <article className="w-full flex justify-end">
         <Breadcrumbs size="lg">
           {path.map((pathElement) => {
-            if (pathElement == book.id) {
+            if (pathElement == book?.id) {
               return <BreadcrumbItem>{book.title}</BreadcrumbItem>;
             }
             return (
@@ -85,13 +92,13 @@ export default function BookClientPage({ book, seriesBook }) {
           </ul>
         </div>
       </article>
-      {book.Series && (
+      {book?.Series && (
         <article className="w-full mb-14">
           <h2 className="font-semibold text-4xl">
             Look all books from {book.Series.Name}
           </h2>
           <ul className="flex flex-row flex-wrap gap-3 items-stretch mt-6">
-            {seriesBook.map((serieBook) => {
+            {seriesBook?.map((serieBook) => {
               return <ListCardBook book={serieBook} />;
             })}
           </ul>
