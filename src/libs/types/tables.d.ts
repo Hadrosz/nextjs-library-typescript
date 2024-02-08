@@ -9,5 +9,3 @@ export type Book =
   | null;
 
 export type Author = Tables<"Author"> | null;
-
-export type AuthorBooks 
