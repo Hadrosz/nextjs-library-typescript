@@ -8,7 +8,6 @@ export default async function IndividualAuthorPage({
 }) {
   const author = await getAuthor(params.authorId);
   const books = await getBooksByAuthor(params.authorId);
-  console.log(books);
 
   return <AuthorClientPage AuthorBooks={books} author={author} />;
 }

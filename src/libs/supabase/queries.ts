@@ -1,4 +1,3 @@
-import { Database } from "@/libs/types/database";
 import CreateClient from "@/libs/supabase/fetch";
 
 const supabase = CreateClient();
@@ -17,7 +16,12 @@ export const getBooks = async () => {
   return books;
 };
 
-export const getBooksBySerie = async (serie_id: string) => {
+export const getSeries = async () => {
+  const { data: series } = await supabase.from("Series").select(`*`);
+  return series;
+};
+
+export const getBooksBySerieWithBookId = async (bookId: string) => {
   const { data: book } = await supabase
     .from("Books")
     .select(
@@ -27,7 +31,7 @@ export const getBooksBySerie = async (serie_id: string) => {
   Series ( * )
   `
     )
-    .eq("id", `${serie_id}`)
+    .eq("id", `${bookId}`)
     .single();
 
   const { data: seriesBooks } = await supabase
@@ -36,6 +40,21 @@ export const getBooksBySerie = async (serie_id: string) => {
     .eq("series", `${book?.series}`)
     .order("dateWritten", { ascending: true });
   return { book, seriesBooks };
+};
+
+export const getBooksBySerie = async (serieId: string) => {
+  const { data: book } = await supabase
+    .from("Books")
+    .select(
+      `*,
+    Author( * ),
+    Genres ( * ),
+    Series!inner ( * )
+    `
+    )
+    .eq("Series.id", serieId);
+
+  return book;
 };
 
 export const getAuthors = async () => {
