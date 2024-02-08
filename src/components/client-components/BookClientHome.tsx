@@ -6,6 +6,7 @@ import ListCardBook from "@/components/cards/ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Book } from "@/libs/types/tables";
+import BreadCrumbsPath from "./BreadCrumbsPath";
 
 export default function BookClientPage({
   book,
@@ -25,18 +26,7 @@ export default function BookClientPage({
   return (
     <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-8 ">
       <article className="w-full flex justify-end">
-        <Breadcrumbs size="lg">
-          {path.map((pathElement) => {
-            if (pathElement == book?.id) {
-              return <BreadcrumbItem>{book.title}</BreadcrumbItem>;
-            }
-            return (
-              <BreadcrumbItem className="capitalize">
-                {pathElement}
-              </BreadcrumbItem>
-            );
-          })}
-        </Breadcrumbs>
+        <BreadCrumbsPath id={book?.id} name={book?.title} />
       </article>
 
       <article className="gap-5 lg:grid lg:grid-cols-2 items-start flex flex-col ">

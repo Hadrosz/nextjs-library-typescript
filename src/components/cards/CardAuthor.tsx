@@ -56,8 +56,8 @@ export default function CardAuthor({ author }: { author: Author | undefined }) {
           </div>
         </div>
         <Link
-          href="#"
-          className="text-md py-1 px-4 border border-purple-500 rounded-lg flex justify-center"
+          href={`/category/authors/${author?.id}`}
+          className="text-md py-1 px-4 border border-purple-500 bg-purple-500 rounded-lg flex justify-center"
         >
           Details
         </Link>
