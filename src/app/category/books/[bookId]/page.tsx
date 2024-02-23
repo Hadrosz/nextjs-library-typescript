@@ -1,5 +1,6 @@
 import BookClientPage from "@/components/client-components/BookClientHome";
-import { getBooksBySerieWithBookId } from "@/libs/supabase/queries";
+import ReviewsSection from "@/components/client-components/ReviewsSection";
+import { getBooksBySerieWithBookId, getReviews } from "@/libs/supabase/queries";
 
 export default async function IndividualBookPage({
   params,
@@ -7,7 +8,32 @@ export default async function IndividualBookPage({
   params: { bookId: string };
 }) {
   const { book, seriesBooks } = await getBooksBySerieWithBookId(params.bookId);
-  console.log(book);
+  const reviews = await getReviews(params.bookId);
+  const length = reviews?.length;
+  let avg;
+  let sum = reviews?.reduce(
+    (accumulator, reviews) => accumulator + reviews.Stars,
+    0
+  );
 
-  return <BookClientPage book={book} seriesBook={seriesBooks} />;
+  if (length === undefined || sum === undefined) {
+    avg = 0;
+  } else {
+    if (length == 0) {
+      avg = -1;
+    } else {
+      avg = sum / length;
+    }
+  }
+
+  return (
+    <>
+      <BookClientPage
+        book={book}
+        seriesBook={seriesBooks}
+        stars={parseInt(avg.toFixed(1))}
+        reviews={reviews}
+      />
+    </>
+  );
 }

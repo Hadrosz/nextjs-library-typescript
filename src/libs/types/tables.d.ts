@@ -8,4 +8,9 @@ export type Book =
     })
   | null;
 
+export type Review = Tables<"bookReview"> & {
+  Books: Tables<"Books"> | null;
+  users: Tables<"users"> | null;
+};
+
 export type Author = Tables<"Author"> | null;

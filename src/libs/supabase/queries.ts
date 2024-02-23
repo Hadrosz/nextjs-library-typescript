@@ -1,4 +1,5 @@
 import CreateClient from "@/libs/supabase/fetch";
+import { UUID } from "crypto";
 
 const supabase = CreateClient();
 
@@ -13,6 +14,7 @@ export const getBooks = async () => {
   `
     )
     .order("dateWritten", { ascending: true });
+
   return books;
 };
 
@@ -22,6 +24,8 @@ export const getSeries = async () => {
 };
 
 export const getBooksBySerieWithBookId = async (bookId: string) => {
+  const supabase = CreateClient();
+
   const { data: book } = await supabase
     .from("Books")
     .select(
@@ -42,7 +46,7 @@ export const getBooksBySerieWithBookId = async (bookId: string) => {
   return { book, seriesBooks };
 };
 
-export const getBooksBySerie = async (serieId: string) => {
+export const getBooksBySerie = async (serieId: UUID) => {
   const { data: book } = await supabase
     .from("Books")
     .select(
@@ -84,4 +88,13 @@ export const getBooksByAuthor = async (authorId: string) => {
     .eq("Author.id", authorId);
 
   return libros;
+};
+
+export const getReviews = async (bookId: string) => {
+  const { data: reviews } = await supabase
+    .from("bookReview")
+    .select(`*, Books!inner( * ), users( * )`)
+    .eq("idBook", bookId);
+
+  return reviews;
 };

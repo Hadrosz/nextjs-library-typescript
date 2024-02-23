@@ -12,12 +12,14 @@ export default function AuthorClientPage({
   AuthorBooks: Book[] | null;
 }) {
   return (
-    <section className=" h-auto justify-center gap-10 flex flex-col place-items-center mt-8 ">
+    <section className="relative h-auto justify-center gap-10 flex flex-col place-items-center mt-8 ">
       <article className="w-full flex justify-end">
         <BreadCrumbsPath id={author?.id} name={author?.fullName} />
       </article>
       <article className="gap-5 lg:grid lg:grid-cols-2 items-start flex flex-col ">
-        <div className="flex flex-col gap-5 justify-center items-center sm:items-stretch sm:flex sm:flex-row ">
+        <div className="relative flex flex-col gap-5 justify-center items-center sm:items-stretch sm:flex sm:flex-row ">
+          <div className="absolute z-[-1] left-0 top-0 w-[50%] h-[50%] rounded-full blue__gradient" />
+          <div className="absolute z-[-1] bottom-1/4  right-0 purple__gradient w-[40%] h-[30%]" />
           <CardAuthor author={author} />
         </div>
         <div>

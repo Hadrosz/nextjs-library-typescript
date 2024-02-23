@@ -118,8 +118,8 @@ export default function NavBar({ session }: { session: UserResponse }) {
                 name={userUsername}
                 size="sm"
                 src={
-                  user?.user_metadata.image_url
-                    ? `${user.user_metadata.image_url}`
+                  user?.user_metadata.avatar_url
+                    ? `${user.user_metadata.avatar_url}`
                     : `https://unavatar.io/${userUsername}`
                 }
               />

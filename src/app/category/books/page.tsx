@@ -1,6 +1,8 @@
 import ListCardBook from "@/components/cards/ListCardBook";
 import { getBooks } from "@/libs/supabase/queries";
 
+export const revalidate = 0;
+
 export default async function booksPage() {
   const books = await getBooks();
 

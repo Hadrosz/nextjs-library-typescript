@@ -1,6 +1,8 @@
 import ListCardAuthor from "@/components/cards/ListCardAuthor";
 import { getAuthors } from "@/libs/supabase/queries";
 
+export const revalidate = 0;
+
 export default async function AuthorsPage() {
   const authors = await getAuthors();
 

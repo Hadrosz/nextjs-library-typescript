@@ -5,15 +5,20 @@ import { Chip } from "@nextui-org/react";
 import ListCardBook from "@/components/cards/ListCardBook";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
-import { Book } from "@/libs/types/tables";
+import { Book, Review } from "@/libs/types/tables";
 import BreadCrumbsPath from "./BreadCrumbsPath";
+import ReviewsSection from "./ReviewsSection";
 
 export default function BookClientPage({
   book,
   seriesBook,
+  stars,
+  reviews,
 }: {
   book: Book;
   seriesBook: Book[] | null;
+  stars: number;
+  reviews: Review[] | null;
 }) {
   const details = {
     show: false,
@@ -46,8 +51,19 @@ export default function BookClientPage({
               <Chip
                 size="lg"
                 variant="shadow"
-                color="warning"
+                color="primary"
               >{`# ${book?.pages} Pages`}</Chip>
+            </li>
+            <li>
+              {stars === -1 ? (
+                ""
+              ) : (
+                <Chip
+                  size="lg"
+                  variant="shadow"
+                  color="warning"
+                >{`Stars ${stars}/5`}</Chip>
+              )}
             </li>
             {book?.series && (
               <li key={0}>
@@ -82,6 +98,7 @@ export default function BookClientPage({
           </ul>
         </div>
       </article>
+      <article>{<ReviewsSection reviews={reviews} />}</article>
       {book?.Series && (
         <article className="w-full mb-14">
           <h2 className="font-semibold text-4xl">

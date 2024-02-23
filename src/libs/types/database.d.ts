@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       Author: {
@@ -73,6 +73,42 @@ export interface Database {
             columns: ["bookID"]
             isOneToOne: false
             referencedRelation: "Books"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      bookReview: {
+        Row: {
+          idBook: string
+          idUser: string
+          Review: string | null
+          Stars: number
+        }
+        Insert: {
+          idBook?: string
+          idUser?: string
+          Review?: string | null
+          Stars: number
+        }
+        Update: {
+          idBook?: string
+          idUser?: string
+          Review?: string | null
+          Stars?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_bookReview_idBook_fkey"
+            columns: ["idBook"]
+            isOneToOne: false
+            referencedRelation: "Books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_bookReview_idUser_fkey"
+            columns: ["idUser"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
@@ -195,6 +231,35 @@ export interface Database {
           Name?: string
         }
         Relationships: []
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_users_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

@@ -30,7 +30,7 @@ export const DiscordButton = () => {
   const supabase = createClient();
 
   const handleSignIn = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "discord",
       options: {
         redirectTo: "/auth/callback",
