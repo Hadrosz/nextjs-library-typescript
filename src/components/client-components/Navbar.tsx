@@ -14,6 +14,8 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
+  Link as link,
+  Button,
 } from "@nextui-org/react";
 import { SearchIcon } from "@/components/assets/NavBarLogo";
 import Link from "next/link";
@@ -24,6 +26,8 @@ import { UserResponse } from "@supabase/supabase-js";
 import { LogSVG } from "@/components/assets/FormsAsset";
 
 export default function NavBar({ session }: { session: UserResponse }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<Data>(session.data.user);
 
@@ -99,12 +103,15 @@ export default function NavBar({ session }: { session: UserResponse }) {
       <NavbarContent justify="end">
         {!user && (
           <NavbarItem className="hidden lg:flex">
-            <Link
+            <Button
+              as={link}
               href="/auth/login"
-              className="py-2 px-6 bg-purple-600 rounded-xl"
+              onClick={() => setIsLoading(true)}
+              isLoading={isLoading}
+              color="secondary"
             >
               Login
-            </Link>
+            </Button>
           </NavbarItem>
         )}
         <NavbarItem className={`${user ? "" : "hidden"}`}>
@@ -174,12 +181,14 @@ export default function NavBar({ session }: { session: UserResponse }) {
         ))}
         {!user && (
           <NavbarMenuItem className="mt-8 w-full flex justify-center self-end">
-            <Link
+            <Button
+              as={link}
               href="/auth/login"
-              className="py-4 px-6 bg-purple-600 rounded-xl w-full flex justify-center font-semibold"
+              onClick={() => isLoading}
+              color="secondary"
             >
               Login
-            </Link>
+            </Button>
           </NavbarMenuItem>
         )}
       </NavbarMenu>

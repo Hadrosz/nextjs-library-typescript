@@ -4,13 +4,16 @@ import { createClient } from "@/libs/supabase/client";
 import { InputsComments } from "@/libs/types/general";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Toaster, toast } from "sonner";
 
 export default function FormComment({
   bookId,
 }: {
   bookId: String | undefined;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createClient();
   const router = useRouter();
   const {
@@ -20,6 +23,7 @@ export default function FormComment({
   } = useForm<InputsComments>();
 
   const onSubmit: SubmitHandler<InputsComments> = async (review) => {
+    setIsLoading(true);
     const session = await getSession();
     const userId = session?.user.id;
     const { description, stars: starString } = review;
@@ -35,8 +39,10 @@ export default function FormComment({
       })
       .select();
 
+    setIsLoading(false);
+
     if (error) {
-      console.log(error);
+      toast(error.message);
     } else {
       router.refresh();
     }
@@ -51,7 +57,8 @@ export default function FormComment({
   ];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex gap-5 w-full">
+      <Toaster />
       <Textarea
         {...register("description", {
           required: { value: true, message: "Review is required" },
@@ -75,7 +82,7 @@ export default function FormComment({
             </SelectItem>
           ))}
         </Select>
-        <Button type="submit" color="secondary">
+        <Button isLoading={isLoading} type="submit" color="secondary">
           Submit
         </Button>
       </div>

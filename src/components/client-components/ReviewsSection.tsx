@@ -15,6 +15,7 @@ import getSession from "@/libs/actions/getSession";
 import { Session, User } from "@supabase/supabase-js";
 import { createClient } from "@/libs/supabase/client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ReviewsSection({
   elementId,
@@ -46,19 +47,22 @@ export default function ReviewsSection({
   }, []);
 
   return (
-    <section className="center">
+    <>
       <h2 className="font-semibold text-3xl mt-7 mb-3 text-primary-900">
         Reviews and Comments
       </h2>
-      <article>
+      <article className="w-full">
         {reviews?.length !== 0 ? (
-          <ul className="flex flex-col gap-4 border-l-1 border-r-1 border-gray-600">
+          <ul className="flex flex-col gap-4 border-l-1 border-r-1 border-b-1 border-gray-600 ">
             {reviews?.map((review) => {
               return (
                 <li key={review.idBook} className="border-b-1 border-gray-600">
                   <Card className="max-w-4xl bg-transparent">
                     <CardHeader className="flex justify-between">
-                      <div className="flex gap-3">
+                      <Link
+                        href={`/users/${review.users?.id}`}
+                        className="flex gap-3"
+                      >
                         <Image
                           alt="nextui logo"
                           height={40}
@@ -76,7 +80,7 @@ export default function ReviewsSection({
                             {review.users?.username}
                           </p>
                         </div>
-                      </div>
+                      </Link>
                       <div className="flex gap-2">
                         <span>{review.Stars}</span>
                         <Star />
@@ -109,14 +113,14 @@ export default function ReviewsSection({
             </li>
           </ul>
         ) : (
-          <div className="flex flex-col justify-center">
+          <div className="w-full sm:w-[30rem] bg-transparent lg:w-[56rem] md:w-[40rem]">
             <span className="font-semibold text-2xl mt-7 mb-3 block">
               No reviews yet, be the first one
             </span>
-            <button>Add my comment</button>
+            <FormComment bookId={elementId} />
           </div>
         )}
       </article>
-    </section>
+    </>
   );
 }

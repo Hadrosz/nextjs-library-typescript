@@ -7,9 +7,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Inputs } from "@/libs/types/general";
+import { toast } from "sonner";
 
 export function EmailSignInTemplate() {
-  const [errorMessage, setErrorMessage] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const router = useRouter();
@@ -19,12 +19,15 @@ export function EmailSignInTemplate() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit: SubmitHandler<Inputs> = async (user) => {
     if (user.confirmPassword !== user.password) {
       setPasswordMatch(true);
       return;
     }
     setPasswordMatch(false);
+    setIsLoading(true);
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -39,12 +42,11 @@ export function EmailSignInTemplate() {
         },
       },
     });
-
+    setIsLoading(false);
     if (!error) {
-      setErrorMessage(false);
       router.push("/auth/login");
     } else {
-      setErrorMessage(true);
+      toast.warning(error.message);
     }
   };
 
@@ -174,17 +176,13 @@ export function EmailSignInTemplate() {
       </div>
       <div>
         <Button
+          isLoading={isLoading}
           type="submit"
           startContent={<LogSVG />}
           className="py-2 px-4 rounded-md bg-white text-black font-semibold text-md my-4 w-full"
         >
           Sign Up
         </Button>
-        {errorMessage && (
-          <div className="w-full py-3 flex justify-center bg-red-600 border border-red-600 boder-2 rounded-3xl font-semibold">
-            <span>Error sending the data</span>
-          </div>
-        )}
       </div>
     </form>
   );

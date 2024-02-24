@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import TiltComponent from "react-parallax-tilt";
 import { Author } from "@/libs/types/tables";
+import { Button, Link } from "@nextui-org/react";
+import { useState } from "react";
 
 export default function CardAuthor({ author }: { author: Author | undefined }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   function calculateAge() {
     if (author?.deathDate) {
       const bornDate = new Date(author.bornDate);
@@ -55,12 +58,17 @@ export default function CardAuthor({ author }: { author: Author | undefined }) {
             </span>
           </div>
         </div>
-        <Link
+
+        <Button
           href={`/category/authors/${author?.id}`}
-          className="text-md py-1 px-4 border border-purple-500 bg-purple-500 rounded-lg flex justify-center"
+          as={Link}
+          color="secondary"
+          className="w-full"
+          isLoading={isLoading}
+          onClick={() => setIsLoading(true)}
         >
           Details
-        </Link>
+        </Button>
       </article>
     </TiltComponent>
   );

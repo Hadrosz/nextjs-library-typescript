@@ -1,9 +1,12 @@
+import { ThemeSwitcher } from "@/components/client-components/ThemeSwitcher";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 export default async function Home() {
   return (
     <BackgroundGradientAnimation>
       <section className="mx-auto max-w-screen-2xl px-6 py-8">
+        <ThemeSwitcher />
+
         <article className="relative flex flex-col place-content-center place-items-center h-[calc(100vh-8rem)] text-balance	gap-16 ">
           <h1 className="lg:text-9xl md:text-7xl  text-6xl font-semibold text-center text-gradient">
             Empower Your Mind, One Step at a Time

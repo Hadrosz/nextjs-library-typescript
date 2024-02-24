@@ -1,11 +1,11 @@
 "use client";
-import { Chip } from "@nextui-org/react";
-import Link from "next/link";
+import { Button, Chip, Link } from "@nextui-org/react";
 import TiltComponent from "react-parallax-tilt";
 import { Book } from "@/libs/types/tables";
 import Image from "next/image";
 import { Details } from "@/libs/types/general";
 import { BackgroundGradient } from "../ui/background-gradient";
+import { useState } from "react";
 
 export default function CardBook({
   book,
@@ -15,6 +15,7 @@ export default function CardBook({
   styles: Details;
 }) {
   const author = book?.Author?.[0];
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <TiltComponent tiltMaxAngleX={3} tiltMaxAngleY={3} className=" max-w-72  ">
@@ -47,14 +48,20 @@ export default function CardBook({
         {styles.show && (
           <div className="flex flex-col gap-4">
             <div className="flex justify-between">
-              <Link
+              <Button
+                as={Link}
+                color="secondary"
+                className="text-md py-1 px-4"
+                isLoading={isLoading}
+                onClick={() => setIsLoading(true)}
                 href={`/category/books/${book?.id}`}
-                className="text-md py-1 px-4 bg-purple-500 rounded-lg just"
               >
                 Details
-              </Link>
+              </Button>
+
               <Link
                 href={`${book?.link_book}`}
+                color="secondary"
                 className="text-md py-1 px-4 border border-purple-500 rounded-lg"
               >
                 Download

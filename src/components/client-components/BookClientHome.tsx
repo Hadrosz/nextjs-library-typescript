@@ -99,7 +99,7 @@ export default function BookClientPage({
           </ul>
         </div>
       </article>
-      <article>
+      <article className="w-max-4xl">
         {<ReviewsSection elementId={book?.id} reviews={reviews} />}
       </article>
       {book?.Series && (
