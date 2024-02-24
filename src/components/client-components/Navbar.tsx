@@ -14,7 +14,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
-  Link as link,
   Button,
 } from "@nextui-org/react";
 import { SearchIcon } from "@/components/assets/NavBarLogo";
@@ -78,10 +77,6 @@ export default function NavBar({ session }: { session: UserResponse }) {
               <Link
                 href={item.link}
                 className={`${path == item.link ? "text-purple-500" : ""} `}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMenuOpen(false);
-                }}
               >
                 {item.name}
               </Link>
@@ -108,7 +103,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
         {!user && (
           <NavbarItem className="hidden lg:flex">
             <Button
-              as={link}
+              as={Link}
               href="/auth/login"
               onClick={() => setIsLoading(true)}
               isLoading={isLoading}
@@ -186,7 +181,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
         {!user && (
           <NavbarMenuItem className="mt-8 w-full flex justify-center self-end">
             <Button
-              as={link}
+              as={Link}
               href="/auth/login"
               onClick={() => isLoading}
               color="secondary"
