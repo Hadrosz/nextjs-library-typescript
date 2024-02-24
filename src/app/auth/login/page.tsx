@@ -21,7 +21,7 @@ export default async function LogInPage() {
         <span className="text-gray-400">Log in with Email</span>
         <EmailTemplate />
         <Link href="/auth/signin" className="text-gray-400 text-sm">
-          Sing in with Email
+          Sing in with Email.
         </Link>
       </article>
     </section>
