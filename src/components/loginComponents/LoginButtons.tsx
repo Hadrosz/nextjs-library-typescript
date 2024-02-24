@@ -26,7 +26,7 @@ export const GitHubButton = () => {
   );
 };
 
-export const DiscordButton = () => {
+export const Discord = () => {
   const supabase = createClient();
 
   const handleSignIn = async () => {

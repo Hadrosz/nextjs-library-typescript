@@ -2,7 +2,7 @@ import EmailTemplate from "@/components/loginComponents/EmailLogInTemplate";
 import { Divider } from "@nextui-org/react";
 import {
   GitHubButton,
-  DiscordButton,
+  Discord,
 } from "@/components/loginComponents/LoginButtons";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ export default async function LogInPage() {
         <div className="absolute z-[-1] bottom-1/4  -right-1/3 purple__gradient w-[40%] h-[30%]" />
         <h1 className="text-md w-full">Log In with:</h1>
         <section className="flex justify-center flex-col w-full">
-          <DiscordButton />
+          <Discord />
           <GitHubButton />
         </section>
         <Divider />
