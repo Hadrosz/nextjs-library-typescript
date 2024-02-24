@@ -1,6 +1,7 @@
 import BookClientPage from "@/components/client-components/BookClientHome";
-import ReviewsSection from "@/components/client-components/ReviewsSection";
 import { getBooksBySerieWithBookId, getReviews } from "@/libs/supabase/queries";
+import { createClient } from "@/libs/supabase/server";
+import { cookies } from "next/headers";
 
 export default async function IndividualBookPage({
   params,

@@ -78,6 +78,10 @@ export default function NavBar({ session }: { session: UserResponse }) {
               <Link
                 href={item.link}
                 className={`${path == item.link ? "text-purple-500" : ""} `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                }}
               >
                 {item.name}
               </Link>

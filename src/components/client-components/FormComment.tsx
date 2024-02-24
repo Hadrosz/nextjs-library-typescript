@@ -10,14 +10,21 @@ import { Toaster, toast } from "sonner";
 
 export default function FormComment({
   bookId,
+  isSession,
+  limit,
 }: {
   bookId: String | undefined;
+  isSession: boolean;
+  limit: boolean;
 }) {
+  const [Limit, setLimit] = useState(limit);
+
   const [isLoading, setIsLoading] = useState(false);
   const supabase = createClient();
   const router = useRouter();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<InputsComments>();
@@ -44,6 +51,8 @@ export default function FormComment({
     if (error) {
       toast(error.message);
     } else {
+      reset();
+      setLimit(true);
       router.refresh();
     }
   };
@@ -67,9 +76,11 @@ export default function FormComment({
         label="Review"
         placeholder="Enter your review"
         className="col-span-12 md:col-span-6 mb-6 md:mb-0 w-3/4 text-medium"
+        isDisabled={isSession || Limit}
       />
       <div className="w-1/4 flex flex-col justify-between ">
         <Select
+          isDisabled={isSession || Limit}
           size="sm"
           label="Select stars"
           className="max-w-xs bg-transparent"
@@ -82,7 +93,12 @@ export default function FormComment({
             </SelectItem>
           ))}
         </Select>
-        <Button isLoading={isLoading} type="submit" color="secondary">
+        <Button
+          isLoading={isLoading}
+          type="submit"
+          color="secondary"
+          isDisabled={isSession || Limit}
+        >
           Submit
         </Button>
       </div>

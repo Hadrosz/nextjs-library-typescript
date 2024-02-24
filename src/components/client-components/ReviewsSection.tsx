@@ -12,7 +12,7 @@ import { Review } from "@/libs/types/tables";
 import FormComment from "./FormComment";
 import { useEffect, useState } from "react";
 import getSession from "@/libs/actions/getSession";
-import { Session, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 import { createClient } from "@/libs/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -26,24 +26,45 @@ export default function ReviewsSection({
 }) {
   const supabase = createClient();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEvent = async () => {
+    setIsLoading(true);
     const { data, error } = await supabase
       .from("bookReview")
       .delete()
       .eq("idUser", session?.id)
       .eq("idBook", elementId);
+    setIsLoading(false);
+    setLimit(false);
     router.refresh();
   };
 
+  const [Limit, setLimit] = useState<boolean>(false);
+
   const [session, setSession] = useState<User>();
+
   useEffect(() => {
     const gettingSession = async () => {
       const user = await getSession();
       setSession(user?.user);
     };
 
+    const LimitReview = async () => {
+      const { data, error } = await supabase
+        .from("bookReview")
+        .select("idUser")
+        .eq("idUser", session?.id);
+
+      if (data) {
+        setLimit(true);
+      } else {
+        setLimit(false);
+      }
+    };
+
     gettingSession();
+    LimitReview();
   }, []);
 
   return (
@@ -90,6 +111,7 @@ export default function ReviewsSection({
                       <p>{review.Review}</p>
                       {review.idUser === session?.id ? (
                         <Button
+                          isLoading={isLoading}
                           color="warning"
                           variant="bordered"
                           className="w-36 mt-5"
@@ -109,7 +131,11 @@ export default function ReviewsSection({
               <h3 className="text-xl mb-2 font-semibold text-secondary-600">
                 Add your Review
               </h3>
-              <FormComment bookId={elementId} />
+              <FormComment
+                limit={Limit}
+                bookId={elementId}
+                isSession={!session ? true : false}
+              />
             </li>
           </ul>
         ) : (
@@ -117,7 +143,11 @@ export default function ReviewsSection({
             <span className="font-semibold text-2xl mt-7 mb-3 block">
               No reviews yet, be the first one
             </span>
-            <FormComment bookId={elementId} />
+            <FormComment
+              limit={Limit}
+              isSession={!session ? true : false}
+              bookId={elementId}
+            />
           </div>
         )}
       </article>
