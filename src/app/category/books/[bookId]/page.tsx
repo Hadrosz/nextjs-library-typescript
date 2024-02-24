@@ -26,12 +26,14 @@ export default async function IndividualBookPage({
     }
   }
 
+  console.log(avg);
+
   return (
     <>
       <BookClientPage
         book={book}
         seriesBook={seriesBooks}
-        stars={parseInt(avg.toFixed(1))}
+        stars={parseFloat(avg.toFixed(1))}
         reviews={reviews}
       />
     </>

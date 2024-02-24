@@ -35,6 +35,7 @@ export function EmailSignInTemplate() {
       options: {
         data: {
           user_name: user.username,
+          full_name: user.fullname,
         },
       },
     });
@@ -54,7 +55,6 @@ export function EmailSignInTemplate() {
     >
       <div className="w-full flex flex-col gap-10">
         <div>
-          {" "}
           <Input
             {...register("username", {
               required: { value: true, message: "Username is required" },
@@ -70,6 +70,26 @@ export function EmailSignInTemplate() {
           {errors.username && (
             <span className="text-red-400 text-xs mt-1">
               {errors.username.message}
+            </span>
+          )}
+        </div>
+
+        <div>
+          <Input
+            {...register("fullname", {
+              required: { value: true, message: "FullName is required" },
+              maxLength: 70,
+            })}
+            variant="underlined"
+            type="text"
+            label="Full Name"
+            labelPlacement="outside"
+            placeholder="Enter your full name"
+            startContent={<EmailSVG />}
+          />
+          {errors.fullname && (
+            <span className="text-red-400 text-xs mt-1">
+              {errors.fullname.message}
             </span>
           )}
         </div>

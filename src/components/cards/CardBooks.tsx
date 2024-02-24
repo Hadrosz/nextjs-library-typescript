@@ -5,6 +5,7 @@ import TiltComponent from "react-parallax-tilt";
 import { Book } from "@/libs/types/tables";
 import Image from "next/image";
 import { Details } from "@/libs/types/general";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 export default function CardBook({
   book,

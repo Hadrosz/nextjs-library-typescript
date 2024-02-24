@@ -5,6 +5,7 @@ import { Providers } from "./provider";
 import NavBarServer from "@/components/server-components/NavbarServer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +26,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers>
           <NavBarServer />
-          <main className="mx-auto max-w-screen-2xl px-6 py-8 ">
-            {children}
-          </main>
+          {children}
         </Providers>
       </body>
     </html>

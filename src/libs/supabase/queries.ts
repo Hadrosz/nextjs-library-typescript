@@ -46,7 +46,7 @@ export const getBooksBySerieWithBookId = async (bookId: string) => {
   return { book, seriesBooks };
 };
 
-export const getBooksBySerie = async (serieId: UUID) => {
+export const getBooksBySerie = async (serieId: string) => {
   const { data: book } = await supabase
     .from("Books")
     .select(

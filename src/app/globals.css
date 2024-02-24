@@ -7,6 +7,10 @@
     @apply scroll-smooth;
   }
 
+  section {
+    @apply mx-auto max-w-screen-2xl px-6 py-8;
+  }
+
   .blue__gradient {
     background: linear-gradient(180deg, #1d4ed8 0%, #0c4a6e 100%);
     filter: blur(123px);
@@ -23,9 +27,9 @@
       #bfd0fe 0.89%,
       #93affd 17.23%,
       #6088fa 42.04%,
-      #a855f7 55.12%,
+      #b77feb 55.12%,
       #2559eb 71.54%,
-      #7a22ce 100%
+      #9d5ed8 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { Book, Review } from "@/libs/types/tables";
 import BreadCrumbsPath from "./BreadCrumbsPath";
 import ReviewsSection from "./ReviewsSection";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 export default function BookClientPage({
   book,
@@ -98,7 +99,9 @@ export default function BookClientPage({
           </ul>
         </div>
       </article>
-      <article>{<ReviewsSection reviews={reviews} />}</article>
+      <article>
+        {<ReviewsSection elementId={book?.id} reviews={reviews} />}
+      </article>
       {book?.Series && (
         <article className="w-full mb-14">
           <h2 className="font-semibold text-4xl">
