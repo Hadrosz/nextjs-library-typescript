@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Step's: Platform for Downloading Books, Publishing Reviews, and Rating
 
-## Getting Started
+Step's is an innovative platform designed for book lovers, where they can discover, download, review, and rate a wide range of books of any genre. With an intuitive interface and exciting features, Step's stands out as a vibrant community for literature enthusiasts.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Key Features
+
+- **Book Download**: Access an extensive library of digital books to download and read anytime, anywhere.
+
+- **Review Publication**: Share your opinions on the books you've read, helping other users make informed decisions about what to read next.
+
+- **Book Rating**: Rate books based on your reading experience, allowing other users to know the quality and popularity of each title.
+
+- **Detailed Visualizations**: Explore detailed information about books, series, and authors, including popularity statistics, featured reviews, and more.
+
+- **Connection with Supabase**: Step's harnesses the power of Supabase to efficiently and securely manage user data, books, and reviews.
+
+---
+
+## Technologies Used
+
+- **Next.js**: A React.js framework that enables the creation of efficient and scalable single-page web applications.
+
+- **TypeScript**: A programming language that adds optional static types to JavaScript, making error detection and code maintenance easier.
+
+- **Tailwind CSS**: A CSS design framework that simplifies the creation of customized and stylized user interfaces quickly and easily.
+
+- **pnpm**: A package manager for JavaScript that optimizes the installation and management of dependencies, ensuring a more efficient development experience.
+
+---
+
+## Installation
+
+Run the following commands
+
+```
+pnpm install
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The server will run on port `localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Considerations
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A `.env.local` file is required to add the Supabase keys, and a **Supabase** database with the following tables is needed
 
-## Learn More
+![alt text](image.png)
 
-To learn more about Next.js, take a look at the following resources:
+Additionally, the correct connections must be made with the `auth.user` and `users` tables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contribute
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Step's is a growing community, and we are always looking for ways to improve! If you have ideas for new features, find bugs, or simply want to contribute to the code, feel free to join our repository on GitHub!
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Join the Step's community today and immerse yourself in the exciting world of digital reading!
