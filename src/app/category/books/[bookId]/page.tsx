@@ -27,8 +27,6 @@ export default async function IndividualBookPage({
     }
   }
 
-  console.log(avg);
-
   return (
     <>
       <BookClientPage

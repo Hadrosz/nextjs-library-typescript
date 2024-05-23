@@ -35,7 +35,6 @@ export default function EmailTemplate() {
     if (error) {
       toast.warning(error.message);
     } else {
-      router.refresh();
       router.push("/");
     }
   };

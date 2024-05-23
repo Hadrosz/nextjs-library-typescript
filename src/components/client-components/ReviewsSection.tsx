@@ -10,12 +10,11 @@ import {
 import { Star } from "@/components/assets/Icons";
 import { Review } from "@/libs/types/tables";
 import FormComment from "./FormComment";
-import { useEffect, useState } from "react";
-import getSession from "@/libs/actions/getSession";
-import { User } from "@supabase/supabase-js";
+import { useContext, useEffect, useState } from "react";
 import { createClient } from "@/libs/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { SessionContext } from "@/libs/context/session";
 
 export default function ReviewsSection({
   elementId,
@@ -30,42 +29,16 @@ export default function ReviewsSection({
 
   const handleEvent = async () => {
     setIsLoading(true);
-    const { data, error } = await supabase
+    await supabase
       .from("bookReview")
       .delete()
-      .eq("idUser", session?.id)
+      .eq("idUser", session?.user?.id)
       .eq("idBook", elementId);
     setIsLoading(false);
-    setLimit(false);
     router.refresh();
   };
 
-  const [Limit, setLimit] = useState<boolean>(false);
-
-  const [session, setSession] = useState<User>();
-
-  useEffect(() => {
-    const gettingSession = async () => {
-      const user = await getSession();
-      setSession(user?.user);
-    };
-
-    const LimitReview = async () => {
-      const { data, error } = await supabase
-        .from("bookReview")
-        .select("idUser")
-        .eq("idUser", session?.id);
-
-      if (data) {
-        setLimit(true);
-      } else {
-        setLimit(false);
-      }
-    };
-
-    gettingSession();
-    LimitReview();
-  }, []);
+  const { session } = useContext(SessionContext);
 
   return (
     <>
@@ -109,7 +82,7 @@ export default function ReviewsSection({
                     </CardHeader>
                     <CardBody>
                       <p>{review.Review}</p>
-                      {review.idUser === session?.id ? (
+                      {review.idUser === session?.user?.id ? (
                         <Button
                           isLoading={isLoading}
                           color="warning"
@@ -132,7 +105,6 @@ export default function ReviewsSection({
                 Add your Review
               </h3>
               <FormComment
-                limit={Limit}
                 bookId={elementId}
                 isSession={!session ? true : false}
               />
@@ -144,7 +116,6 @@ export default function ReviewsSection({
               No reviews yet, be the first one
             </span>
             <FormComment
-              limit={Limit}
               isSession={!session ? true : false}
               bookId={elementId}
             />

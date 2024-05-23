@@ -13,13 +13,11 @@ export default function BreadCrumbsPath({
   const pathname = usePathname();
   const path = pathname.split("/");
   path.shift();
-  console.log(path);
   let newPath: string = "";
   return (
     <Breadcrumbs size="lg">
       {path.map((pathElement, i) => {
         newPath = newPath + "/" + path[i];
-        console.log(newPath);
         if (pathElement == id?.toString()) {
           return <BreadcrumbItem>{name}</BreadcrumbItem>;
         }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -19,37 +19,22 @@ import {
 import { SearchIcon } from "@/components/assets/NavBarLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Data } from "@/libs/types/general";
 import { createClient } from "@/libs/supabase/client";
-import { UserResponse } from "@supabase/supabase-js";
 import { LogSVG } from "@/components/assets/FormsAsset";
+import { useAuth } from "@/libs/context/session";
 
-export default function NavBar({ session }: { session: UserResponse }) {
-  const [isLoading, setIsLoading] = useState(false);
+export default function NavBar() {
+  const [isLoading] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState<Data>(session.data.user);
-
-  const supabase = createClient();
-  const path = usePathname();
-  const userUsername = user?.user_metadata.user_name;
-
-  useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (data) {
-        setUser(data.user);
-      } else {
-        setUser(data);
-      }
-    };
-    getUser();
-  }, [session]);
+  const { session, user, signOut } = useAuth();
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
+    signOut();
   };
+
+  const path = usePathname();
+  const userUsername = session?.user?.user_metadata.user_name;
 
   const menuItems = [
     { name: "Home", link: "/" },
@@ -105,7 +90,6 @@ export default function NavBar({ session }: { session: UserResponse }) {
             <Button
               as={Link}
               href="/auth/login"
-              onClick={() => setIsLoading(true)}
               isLoading={isLoading}
               color="secondary"
             >
@@ -113,7 +97,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
             </Button>
           </NavbarItem>
         )}
-        <NavbarItem className={`${user ? "" : "hidden"}`}>
+        <NavbarItem className={`${session ? "" : "hidden"}`}>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -125,7 +109,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
                 size="sm"
                 src={
                   user?.user_metadata.avatar_url
-                    ? `${user.user_metadata.avatar_url}`
+                    ? `${user?.user_metadata.avatar_url}`
                     : `https://unavatar.io/${userUsername}`
                 }
               />
@@ -180,12 +164,7 @@ export default function NavBar({ session }: { session: UserResponse }) {
         ))}
         {!user && (
           <NavbarMenuItem className="mt-8 w-full flex justify-center self-end">
-            <Button
-              as={Link}
-              href="/auth/login"
-              onClick={() => isLoading}
-              color="secondary"
-            >
+            <Button as={Link} href="/auth/login" color="secondary">
               Login
             </Button>
           </NavbarMenuItem>

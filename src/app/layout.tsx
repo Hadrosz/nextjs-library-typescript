@@ -6,8 +6,9 @@ import NavBarServer from "@/components/server-components/NavbarServer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { ThemeSwitcher } from "@/components/client-components/ThemeSwitcher";
 import { Toaster } from "sonner";
+import { createClient } from "@/libs/supabase/client";
+import { AuthProvider } from "@/libs/context/session";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,14 +24,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = createClient();
+
   return (
     <html lang="en" className="dark">
       <body
         className={`${inter.className} relative z-[-1] dark:bg-black bg-white  dark:bg-dot-white/[0.1] bg-dot-black/[0.1]`}
       >
         <Providers>
-          <NavBarServer />
-          {children}
+          <AuthProvider>
+            <NavBarServer />
+            {children}
+          </AuthProvider>
         </Providers>
         <Toaster />
       </body>

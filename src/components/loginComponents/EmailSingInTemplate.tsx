@@ -2,14 +2,16 @@
 import { EmailSVG, LogSVG, PasswordSVG } from "@/components/assets/FormsAsset";
 
 import { Button, Input } from "@nextui-org/react";
-import { createClient } from "@supabase/supabase-js";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Inputs } from "@/libs/types/general";
 import { toast } from "sonner";
+import { createClient } from "@/libs/supabase/client";
 
 export function EmailSignInTemplate() {
+  const supabaseClient = createClient();
+
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const router = useRouter();
@@ -28,11 +30,8 @@ export function EmailSignInTemplate() {
     }
     setPasswordMatch(false);
     setIsLoading(true);
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    const { data, error } = await supabase.auth.signUp({
+
+    const { data, error } = await supabaseClient.auth.signUp({
       email: user.email,
       password: user.password,
       options: {

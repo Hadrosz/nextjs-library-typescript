@@ -8,5 +8,5 @@ export default async function NavBarServer() {
   const supabase = createClient(cookieStore);
   const session = await supabase.auth.getUser();
 
-  return <NavBar session={session} />;
+  return <NavBar />;
 }
