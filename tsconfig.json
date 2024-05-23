@@ -34,7 +34,7 @@
     "src/components/assets/FormsAsset.jsx",
     "src/app/category/books/[bookId]/page.tsx",
     "src/app/components/client-components/BookClientHome.jsx",
-    "src/app/videos/video.jsx"
+    "src/app/videos/page.tsx"
   ],
   "exclude": ["node_modules"]
 }
